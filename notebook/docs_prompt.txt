@@ -1,0 +1,103 @@
+Act as a Senior Software Architect and Technical Documentation Expert.
+
+Analyze the entire project repository and generate a complete, clean, and well-structured Architecture & Technical Documentation.
+
+Your output must include:
+
+1. 📌 Project Overview
+   - Project name
+   - Purpose of the system
+   - Problem it solves
+   - Target users
+   - High-level workflow summary
+
+2. 🏗 System Architecture
+   - Overall architecture style (Monolith / Microservices / Layered / Event-driven etc.)
+   - Architecture explanation in simple English
+   - Component breakdown
+   - Interaction flow between components
+   - Request lifecycle (step-by-step)
+   - Include Mermaid diagrams (flowchart + sequence diagram + component diagram)
+
+3. 📂 Folder & Code Structure Explanation
+   - Explain each major folder
+   - Explain responsibility of each module
+   - Explain how files are connected
+   - Mention design patterns used (if any)
+
+4. 🔄 Data Flow
+   - Input → Processing → Storage → Output
+   - Database interactions
+   - External API calls
+   - Middleware handling
+   - Error handling flow
+
+5. 🧠 Business Logic Explanation
+   - Core logic modules explained in simple terms
+   - Any AI/ML/LLM integration explained clearly
+   - Vector DB / embeddings explanation (if present)
+   - Caching / pooling / async handling explanation
+
+6. 🗄 Database Documentation
+   - Database type
+   - Schema overview
+   - Table purpose
+   - Relationships
+   - Indexing strategy
+   - Connection pooling explanation
+
+7. 🔐 Security Architecture
+   - Authentication & Authorization
+   - Secrets management
+   - API protection
+   - Data validation
+
+8. 🚀 Deployment Architecture
+   - How to run locally
+   - Environment setup
+   - Docker explanation (if used)
+   - CI/CD overview
+   - Production deployment structure
+
+9. 📦 Tech Stack Summary
+   - Backend
+   - Frontend (if any)
+   - Database
+   - AI models
+   - Libraries used
+   - Why each tech was chosen
+
+10. 📊 Scalability & Optimization
+    - Performance strategy
+    - Async handling
+    - DB pooling
+    - Caching
+    - Horizontal scaling possibilities
+
+11. 🧪 Testing Strategy
+    - Unit testing approach
+    - Integration testing
+    - Mocking strategy
+
+12. 📖 API Documentation
+    - List all endpoints
+    - Request format
+    - Response format
+    - Example JSON
+    - Error responses
+
+13. 📝 README (Clean Version)
+    - Installation
+    - Setup
+    - Running
+    - Troubleshooting
+
+Important Rules:
+- Write in simple, chatbot-friendly language.
+- Avoid vague explanations.
+- Structure content with clear headings.
+- Use tables where helpful.
+- Use Mermaid diagrams.
+- Make it understandable even for a new developer.
+- Avoid unnecessary fluff.
+- Be professional and clean.
