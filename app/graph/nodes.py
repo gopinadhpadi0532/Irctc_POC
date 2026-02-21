@@ -1,6 +1,7 @@
 from typing import TypedDict, List
 from langchain_core.messages import BaseMessage, HumanMessage, AIMessage
 from app.llm.model import get_llm
+from app.services.llm_service import llm_chat
 from app.services.irctc_service import (
     search_trains,
     check_availability,
@@ -15,8 +16,7 @@ class ChatState(TypedDict):
 
 # ---- Planner Node ----
 def planner_node(state: ChatState):
-    llm = get_llm()
-
+    # Build a short prompt for the planner: last human message + system instructions
     system_prompt = """
     You are an IRCTC assistant.
 
@@ -29,16 +29,24 @@ def planner_node(state: ChatState):
     Respond ONLY with one of these action names.
     """
 
-    response = llm.invoke(
-        state["messages"] + [HumanMessage(content=system_prompt)]
-    )
+    # Find the last human message content
+    last_user = ""
+    for m in reversed(state.get("messages", [])):
+        if isinstance(m, HumanMessage):
+            last_user = m.content
+            break
 
-    action = response.content.strip()
+    prompt = (last_user or "") + "\n\n" + system_prompt
 
-    return {
-        "messages": state["messages"],
-        "action": action
-    }
+    # Try Google first, then fall back to Groq if quota/errors occur
+    try:
+        resp = llm_chat(prompt, provider="google", save=False)
+    except Exception:
+        resp = llm_chat(prompt, provider="groq", save=False)
+
+    action = resp.get("text", "").strip()
+
+    return {"messages": state["messages"], "action": action}
 
 
 # ---- Tool Execution Node ----
